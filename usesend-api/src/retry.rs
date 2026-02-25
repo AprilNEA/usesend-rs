@@ -40,9 +40,7 @@ where
             Ok(v) => return Ok(v),
             Err(ApiError::RateLimit { retry_after }) if retries_left > 0 => {
                 retries_left -= 1;
-                let base = retry_after
-                    .map(|s| s * 1000)
-                    .unwrap_or(opts.base_delay_ms);
+                let base = retry_after.map(|s| s * 1000).unwrap_or(opts.base_delay_ms);
                 let jitter = if opts.jitter_range_ms.is_empty() {
                     0
                 } else {

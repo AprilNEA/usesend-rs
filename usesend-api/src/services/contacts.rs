@@ -13,9 +13,10 @@ impl ContactsSvc {
         params: &ListContactsParams,
     ) -> ApiResult<Vec<Contact>> {
         let mut req = self.0.auth(
-            self.0
-                .client
-                .get(self.0.url(&format!("/v1/contactBooks/{contact_book_id}/contacts"))),
+            self.0.client.get(
+                self.0
+                    .url(&format!("/v1/contactBooks/{contact_book_id}/contacts")),
+            ),
         );
         if let Some(page) = params.page {
             req = req.query(&[("page", page.to_string())]);
@@ -40,9 +41,10 @@ impl ContactsSvc {
         let req = self
             .0
             .auth(
-                self.0
-                    .client
-                    .post(self.0.url(&format!("/v1/contactBooks/{contact_book_id}/contacts"))),
+                self.0.client.post(
+                    self.0
+                        .url(&format!("/v1/contactBooks/{contact_book_id}/contacts")),
+                ),
             )
             .json(body);
         self.0.send_and_parse(req).await

@@ -17,8 +17,8 @@
 //! # }
 //! ```
 
-pub mod types;
 pub mod services;
+pub mod types;
 
 mod client;
 mod config;

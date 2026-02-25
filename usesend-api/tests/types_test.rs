@@ -1,8 +1,7 @@
-use serde_json;
-use usesend_api::types::*;
+use usesend_api::types::campaign::*;
 use usesend_api::types::domain::*;
 use usesend_api::types::email::*;
-use usesend_api::types::campaign::*;
+use usesend_api::types::*;
 
 #[test]
 fn string_or_vec_single_serialize() {
@@ -13,7 +12,10 @@ fn string_or_vec_single_serialize() {
 #[test]
 fn string_or_vec_multiple_serialize() {
     let v = StringOrVec::Multiple(vec!["a@test.com".into(), "b@test.com".into()]);
-    assert_eq!(serde_json::to_string(&v).unwrap(), r#"["a@test.com","b@test.com"]"#);
+    assert_eq!(
+        serde_json::to_string(&v).unwrap(),
+        r#"["a@test.com","b@test.com"]"#
+    );
 }
 
 #[test]
@@ -25,7 +27,10 @@ fn string_or_vec_single_deserialize() {
 #[test]
 fn string_or_vec_multiple_deserialize() {
     let v: StringOrVec = serde_json::from_str(r#"["a@test.com","b@test.com"]"#).unwrap();
-    assert_eq!(v, StringOrVec::Multiple(vec!["a@test.com".into(), "b@test.com".into()]));
+    assert_eq!(
+        v,
+        StringOrVec::Multiple(vec!["a@test.com".into(), "b@test.com".into()])
+    );
 }
 
 #[test]

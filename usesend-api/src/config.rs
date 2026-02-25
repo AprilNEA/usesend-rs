@@ -14,8 +14,7 @@ use crate::types::ErrorResponse;
 const DEFAULT_BASE_URL: &str = "https://app.usesend.com/api";
 const DEFAULT_RATE_LIMIT: u32 = 9;
 
-type DirectRateLimiter =
-    RateLimiter<NotKeyed, InMemoryState, DefaultClock, NoOpMiddleware>;
+type DirectRateLimiter = RateLimiter<NotKeyed, InMemoryState, DefaultClock, NoOpMiddleware>;
 
 /// Shared configuration for all API services.
 pub struct Config {

@@ -27,9 +27,11 @@ impl CampaignsSvc {
     }
 
     pub async fn get(&self, campaign_id: &str) -> ApiResult<Campaign> {
-        let req = self
-            .0
-            .auth(self.0.client.get(self.0.url(&format!("/v1/campaigns/{campaign_id}"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .get(self.0.url(&format!("/v1/campaigns/{campaign_id}"))),
+        );
         self.0.send_and_parse(req).await
     }
 

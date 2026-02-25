@@ -1,7 +1,7 @@
 use crate::config::SharedConfig;
 use crate::error::ApiResult;
-use crate::types::contact_book::*;
 use crate::types::DeleteResponse;
+use crate::types::contact_book::*;
 
 #[derive(Debug, Clone)]
 pub struct ContactBooksSvc(pub(crate) SharedConfig);
@@ -23,9 +23,11 @@ impl ContactBooksSvc {
     }
 
     pub async fn get(&self, id: &str) -> ApiResult<ContactBook> {
-        let req = self
-            .0
-            .auth(self.0.client.get(self.0.url(&format!("/v1/contactBooks/{id}"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .get(self.0.url(&format!("/v1/contactBooks/{id}"))),
+        );
         self.0.send_and_parse(req).await
     }
 
@@ -36,15 +38,21 @@ impl ContactBooksSvc {
     ) -> ApiResult<ContactBook> {
         let req = self
             .0
-            .auth(self.0.client.patch(self.0.url(&format!("/v1/contactBooks/{id}"))))
+            .auth(
+                self.0
+                    .client
+                    .patch(self.0.url(&format!("/v1/contactBooks/{id}"))),
+            )
             .json(body);
         self.0.send_and_parse(req).await
     }
 
     pub async fn delete(&self, id: &str) -> ApiResult<DeleteResponse> {
-        let req = self
-            .0
-            .auth(self.0.client.delete(self.0.url(&format!("/v1/contactBooks/{id}"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .delete(self.0.url(&format!("/v1/contactBooks/{id}"))),
+        );
         self.0.send_and_parse(req).await
     }
 }

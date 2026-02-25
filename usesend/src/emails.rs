@@ -1,8 +1,8 @@
 use std::collections::HashMap;
+use usesend_api::ApiResult;
 use usesend_api::services::EmailsSvc;
 use usesend_api::types::StringOrVec;
 use usesend_api::types::email::*;
-use usesend_api::ApiResult;
 
 /// High-level emails service.
 #[derive(Clone)]

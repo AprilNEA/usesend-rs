@@ -63,8 +63,8 @@ impl UseSend {
     /// # Panics
     /// Panics if `USESEND_API_KEY` is not set.
     pub fn from_env() -> Self {
-        let key = std::env::var("USESEND_API_KEY")
-            .expect("USESEND_API_KEY environment variable not set");
+        let key =
+            std::env::var("USESEND_API_KEY").expect("USESEND_API_KEY environment variable not set");
         Self::new(key)
     }
 }

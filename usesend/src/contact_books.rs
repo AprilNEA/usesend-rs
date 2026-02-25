@@ -1,7 +1,7 @@
-use usesend_api::services::ContactBooksSvc;
-use usesend_api::types::contact_book::*;
-use usesend_api::types::DeleteResponse;
 use usesend_api::ApiResult;
+use usesend_api::services::ContactBooksSvc;
+use usesend_api::types::DeleteResponse;
+use usesend_api::types::contact_book::*;
 
 /// High-level contact books service.
 #[derive(Clone)]

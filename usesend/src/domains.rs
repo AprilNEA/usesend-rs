@@ -1,7 +1,7 @@
+use usesend_api::ApiResult;
 use usesend_api::services::DomainsSvc;
 use usesend_api::types::domain::*;
 use usesend_api::types::{DeleteResponse, DomainId};
-use usesend_api::ApiResult;
 
 /// High-level domains service.
 #[derive(Clone)]

@@ -1,7 +1,7 @@
 use crate::config::SharedConfig;
 use crate::error::ApiResult;
 use crate::types::domain::*;
-use crate::types::{DomainId, DeleteResponse};
+use crate::types::{DeleteResponse, DomainId};
 
 #[derive(Debug, Clone)]
 pub struct DomainsSvc(pub(crate) SharedConfig);
@@ -28,16 +28,20 @@ impl DomainsSvc {
     }
 
     pub async fn delete(&self, id: DomainId) -> ApiResult<DeleteResponse> {
-        let req = self
-            .0
-            .auth(self.0.client.delete(self.0.url(&format!("/v1/domains/{id}"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .delete(self.0.url(&format!("/v1/domains/{id}"))),
+        );
         self.0.send_and_parse(req).await
     }
 
     pub async fn verify(&self, id: DomainId) -> ApiResult<VerifyDomainResponse> {
-        let req = self
-            .0
-            .auth(self.0.client.put(self.0.url(&format!("/v1/domains/{id}/verify"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .put(self.0.url(&format!("/v1/domains/{id}/verify"))),
+        );
         self.0.send_and_parse(req).await
     }
 }

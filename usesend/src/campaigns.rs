@@ -1,8 +1,8 @@
+use usesend_api::ApiResult;
 use usesend_api::services::CampaignsSvc;
 use usesend_api::types::StringOrVec;
 use usesend_api::types::SuccessResponse;
 use usesend_api::types::campaign::*;
-use usesend_api::ApiResult;
 
 /// High-level campaigns service.
 #[derive(Clone)]

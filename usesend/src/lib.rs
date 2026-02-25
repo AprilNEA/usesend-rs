@@ -27,19 +27,19 @@
 //! You can use `UseSend::from_env()` or `UseSend::default()` which reads the
 //! `USESEND_API_KEY` environment variable.
 
-mod client;
 mod campaigns;
+mod client;
 mod contact_books;
 mod contacts;
 mod domains;
 mod emails;
 
-pub use client::UseSend;
 pub use campaigns::Campaigns;
+pub use client::UseSend;
 pub use contact_books::ContactBooks;
 pub use contacts::Contacts;
 pub use domains::Domains;
-pub use emails::{Emails, EmailBuilder};
+pub use emails::{EmailBuilder, Emails};
 
 pub use usesend_api::types;
 pub use usesend_api::{ApiError, ApiResult};

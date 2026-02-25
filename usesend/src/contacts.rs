@@ -1,7 +1,7 @@
+use usesend_api::ApiResult;
 use usesend_api::services::ContactsSvc;
 use usesend_api::types::SuccessResponse;
 use usesend_api::types::contact::*;
-use usesend_api::ApiResult;
 
 /// High-level contacts service.
 #[derive(Clone)]

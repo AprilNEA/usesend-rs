@@ -66,9 +66,11 @@ impl EmailsSvc {
     }
 
     pub async fn get(&self, email_id: &str) -> ApiResult<EmailDetail> {
-        let req = self
-            .0
-            .auth(self.0.client.get(self.0.url(&format!("/v1/emails/{email_id}"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .get(self.0.url(&format!("/v1/emails/{email_id}"))),
+        );
         self.0.send_and_parse(req).await
     }
 
@@ -79,15 +81,21 @@ impl EmailsSvc {
     ) -> ApiResult<SendEmailResponse> {
         let req = self
             .0
-            .auth(self.0.client.patch(self.0.url(&format!("/v1/emails/{email_id}"))))
+            .auth(
+                self.0
+                    .client
+                    .patch(self.0.url(&format!("/v1/emails/{email_id}"))),
+            )
             .json(body);
         self.0.send_and_parse(req).await
     }
 
     pub async fn cancel(&self, email_id: &str) -> ApiResult<SendEmailResponse> {
-        let req = self
-            .0
-            .auth(self.0.client.post(self.0.url(&format!("/v1/emails/{email_id}/cancel"))));
+        let req = self.0.auth(
+            self.0
+                .client
+                .post(self.0.url(&format!("/v1/emails/{email_id}/cancel"))),
+        );
         self.0.send_and_parse(req).await
     }
 }
