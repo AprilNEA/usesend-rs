@@ -1,3 +1,4 @@
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 //! Ergonomic Rust SDK for the [useSend](https://usesend.com) email service.
 //!
 //! This crate wraps [`usesend_api`] with a user-friendly, builder-based API.

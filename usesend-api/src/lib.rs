@@ -1,3 +1,4 @@
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 //! Low-level API client for the [useSend](https://usesend.com) email service.
 //!
 //! This crate provides typed request/response models and a raw HTTP client
