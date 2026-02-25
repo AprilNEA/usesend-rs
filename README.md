@@ -64,7 +64,7 @@ Most users should depend on **`usesend`**. Use `usesend-api` directly only if yo
 
 ## Minimum Supported Rust Version
 
-The MSRV is **1.85** (Rust edition 2024).
+The MSRV is **1.88** (Rust edition 2024).
 
 ## Contributing
 
