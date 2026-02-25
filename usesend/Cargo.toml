@@ -1,10 +1,16 @@
 [package]
 name = "usesend"
-description = "Ergonomic Rust SDK for useSend email service"
+description = "Ergonomic Rust SDK for useSend — an open-source Resend alternative"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
 license.workspace = true
 repository.workspace = true
+homepage.workspace = true
+rust-version.workspace = true
+readme = "../README.md"
+keywords = ["email", "usesend", "resend", "api", "sdk"]
+categories = ["api-bindings", "email", "web-programming::http-client"]
 
 [features]
 default = ["native-tls"]
