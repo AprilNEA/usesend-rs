@@ -73,4 +73,4 @@ cargo test --all
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the [MIT License](LICENSE).
+By contributing, you agree that your contributions will be licensed under the [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE) license, at the user's choice.

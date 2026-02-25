@@ -8,7 +8,7 @@
 [![Crates.io (usesend-api)](https://img.shields.io/crates/v/usesend-api.svg)](https://crates.io/crates/usesend-api)
 [![docs.rs](https://docs.rs/usesend/badge.svg)](https://docs.rs/usesend)
 [![CI](https://github.com/AprilNEA/usesend-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/AprilNEA/usesend-rs/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/License-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE-MIT)
 
 </div>
 
@@ -70,4 +70,4 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 
 ## License
 
-[MIT](LICENSE) © 2024-2026 AprilNEA
+Licensed under either of [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE) at your option.
