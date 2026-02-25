@@ -18,7 +18,8 @@ native-tls = ["usesend-api/native-tls"]
 rustls-tls = ["usesend-api/rustls-tls"]
 
 [dependencies]
-usesend-api = { version = "0.1.1", path = "../usesend-api", default-features = false }
+bon.workspace = true
+usesend-api = { version = "0.2.0", path = "../usesend-api", default-features = false }
 reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true

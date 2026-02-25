@@ -12,13 +12,8 @@ impl Domains {
         self.0.list().await
     }
 
-    pub async fn create(&self, name: &str, region: &str) -> ApiResult<Domain> {
-        self.0
-            .create(&CreateDomainRequest {
-                name: name.to_string(),
-                region: region.to_string(),
-            })
-            .await
+    pub async fn create(&self, body: &CreateDomainRequest) -> ApiResult<Domain> {
+        self.0.create(body).await
     }
 
     pub async fn get(&self, id: impl Into<DomainId>) -> ApiResult<Domain> {

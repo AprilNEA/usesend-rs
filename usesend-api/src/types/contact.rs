@@ -1,3 +1,4 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -22,12 +23,15 @@ pub struct Contact {
 
 // --- Requests ---
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateContactRequest {
+    #[builder(into)]
     pub email: String,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub last_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -36,11 +40,13 @@ pub struct CreateContactRequest {
     pub subscribed: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UpdateContactRequest {
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub first_name: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub last_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -49,15 +55,17 @@ pub struct UpdateContactRequest {
     pub subscribed: Option<bool>,
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ListContactsParams {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub page: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub limit: Option<i64>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub emails: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub ids: Option<String>,
 }

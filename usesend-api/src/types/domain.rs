@@ -1,3 +1,4 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 
 use super::DomainId;
@@ -73,9 +74,11 @@ pub struct Domain {
 
 // --- Request ---
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 pub struct CreateDomainRequest {
+    #[builder(into)]
     pub name: String,
+    #[builder(into)]
     pub region: String,
 }
 

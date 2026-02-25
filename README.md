@@ -23,18 +23,20 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ## Quick Start
 
 ```rust,no_run
+use usesend::types::email::SendEmailRequest;
+
 #[tokio::main]
 async fn main() -> usesend::ApiResult<()> {
     let client = usesend::UseSend::new("us_api_key");
 
-    let resp = client.emails.build()
+    let email = SendEmailRequest::builder()
         .from("hello@example.com")
         .to("user@example.com")
         .subject("Hello from useSend!")
         .html("<h1>Welcome!</h1>")
-        .send()
-        .await?;
+        .build();
 
+    let resp = client.emails.send(&email).await?;
     println!("Sent: {}", resp.email_id);
     Ok(())
 }

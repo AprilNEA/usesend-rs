@@ -18,6 +18,7 @@ native-tls = ["reqwest/native-tls"]
 rustls-tls = ["reqwest/rustls-tls"]
 
 [dependencies]
+bon.workspace = true
 governor = "0.8"
 reqwest.workspace = true
 serde.workspace = true

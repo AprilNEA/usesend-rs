@@ -1,3 +1,4 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 
 use super::{CampaignId, ContactBookId, StringOrVec};
@@ -50,49 +51,63 @@ pub struct Campaign {
 
 // --- Requests ---
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateCampaignRequest {
+    #[builder(into)]
     pub name: String,
+    #[builder(into)]
     pub from: String,
+    #[builder(into)]
     pub subject: String,
+    #[builder(into)]
     pub contact_book_id: String,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub content: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub html: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub preview_text: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_to: Option<StringOrVec>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cc: Option<StringOrVec>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub bcc: Option<StringOrVec>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub send_now: Option<bool>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scheduled_at: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub batch_size: Option<i64>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ScheduleCampaignRequest {
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scheduled_at: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub batch_size: Option<i64>,
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ListCampaignsParams {
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub page: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub status: Option<CampaignStatus>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub search: Option<String>,
 }

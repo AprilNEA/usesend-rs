@@ -6,16 +6,18 @@ use crate::{Campaigns, ContactBooks, Contacts, Domains, Emails};
 ///
 /// ```no_run
 /// # async fn example() -> usesend::ApiResult<()> {
+/// use usesend_api::types::email::SendEmailRequest;
+///
 /// let client = usesend::UseSend::new("us_api_key");
 ///
 /// // Send an email
-/// let resp = client.emails.build()
+/// let email = SendEmailRequest::builder()
 ///     .from("hello@example.com")
 ///     .to("user@example.com")
 ///     .subject("Hello!")
 ///     .html("<h1>Hi</h1>")
-///     .send()
-///     .await?;
+///     .build();
+/// let resp = client.emails.send(&email).await?;
 ///
 /// // List domains
 /// let domains = client.domains.list().await?;

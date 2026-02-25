@@ -1,3 +1,4 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -93,33 +94,44 @@ pub struct EmailDetail {
 
 // --- Requests ---
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SendEmailRequest {
+    #[builder(into)]
     pub to: StringOrVec,
+    #[builder(into)]
     pub from: String,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub subject: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub template_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub variables: Option<HashMap<String, String>>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reply_to: Option<StringOrVec>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cc: Option<StringOrVec>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub bcc: Option<StringOrVec>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub text: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub html: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub headers: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub attachments: Option<Vec<Attachment>>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub scheduled_at: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub in_reply_to_id: Option<String>,
 }
@@ -130,17 +142,22 @@ pub struct RescheduleEmailRequest {
     pub scheduled_at: String,
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Builder, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ListEmailsParams {
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub page: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub limit: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub start_date: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub end_date: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub domain_id: Option<StringOrVec>,
 }

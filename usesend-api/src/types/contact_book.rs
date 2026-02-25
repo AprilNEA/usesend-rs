@@ -1,3 +1,4 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -24,19 +25,23 @@ pub struct ContactBookCount {
 
 // --- Requests ---
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 pub struct CreateContactBookRequest {
+    #[builder(into)]
     pub name: String,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub emoji: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub properties: Option<HashMap<String, String>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Builder, Serialize, Deserialize)]
 pub struct UpdateContactBookRequest {
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[builder(into)]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub emoji: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
