@@ -13,12 +13,12 @@ keywords = ["email", "usesend", "resend", "api", "sdk"]
 categories = ["api-bindings", "email", "web-programming::http-client"]
 
 [features]
-default = ["native-tls"]
+default = ["rustls-tls"]
 native-tls = ["usesend-api/native-tls"]
 rustls-tls = ["usesend-api/rustls-tls"]
 
 [dependencies]
-usesend-api = { path = "../usesend-api", default-features = false }
+usesend-api = { version = "0.1.0", path = "../usesend-api", default-features = false }
 reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true
