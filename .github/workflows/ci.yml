@@ -2,16 +2,23 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   check:
-    name: Check
+    name: Check (${{ matrix.features || 'default' }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,7 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo check ${{ matrix.features }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check --all ${{ matrix.features }}
 
   test:
     name: Test
@@ -29,7 +37,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
       - run: cargo test --all
+
+  msrv:
+    name: MSRV
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect MSRV
+        run: |
+          msrv=$(cargo metadata --format-version 1 --no-deps | \
+              jq -r '.packages[] | select(.name == "usesend") | .rust_version')
+          echo "Crate MSRV: $msrv"
+          echo "MSRV=$msrv" >> $GITHUB_ENV
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ env.MSRV }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check --all
 
   clippy:
     name: Clippy
@@ -39,7 +65,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
-      - run: cargo clippy --all -- -D warnings
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo clippy --all --all-targets -- -D warnings
 
   fmt:
     name: Format
